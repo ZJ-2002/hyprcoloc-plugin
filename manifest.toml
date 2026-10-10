@@ -82,3 +82,24 @@ HYPRCOLOC_SNPSCORES = "{{ snpscores }}"
 # table keeps the hardened defaults (isolated network, read-only rootfs,
 # pull policy missing) with no cpu/memory limits, matching the legacy
 # container_spec exactly.
+
+[[nodes]]
+kind = "cachexia_hyprcoloc_official"
+desc = "Official HyPrColoc with explicit trait, overlap, correlation, LD and method contracts."
+doc = "Six ordered files: SNP/beta/SE table, trait mapping, hash/method contract, trait correlation, sample overlap, signed SNP LD. No implicit intersection, independence, missing-value removal or scientific release. Outputs complete typed official object, RDS, log, SNP ledger, audit and trait ledger. Regional-only and regional-sensitivity modes are explicitly not colocalization findings. Rejects the upstream 0.0.2 rapid-sensitivity snps.clc defect without silently replacing reg_steps. Not PP.H4, coloc.susie, signal-qualified three-trait bridge, family assembly, full-domain or resident-daemon certification."
+timeout_secs = 900
+artifact_prefix = "/artifacts/cachexia_hyprcoloc_official"
+[nodes.resources]
+cpus = 1.0
+memory = "2Gi"
+network = "isolated"
+pull_policy = "never"
+[nodes.ports]
+inputs = [{ type = "file" }, { type = "file" }, { type = "file" }, { type = "file" }, { type = "file" }, { type = "file" }]
+outputs = [{ path = "hyprcoloc_summary.tsv", format = "tsv" }, { path = "hyprcoloc.RDS", format = "r_rds" }, { path = "hyprcoloc.log", format = "text" }, { path = "snps.tsv", format = "tsv" }, { path = "audit.tsv", format = "tsv" }, { path = "traits.tsv", format = "tsv" }]
+[nodes.command]
+interpreter = "Rscript"
+script_file = "scripts/hyprcoloc.R"
+[nodes.command.env]
+OPENBLAS_NUM_THREADS = "1"
+OMP_NUM_THREADS = "1"

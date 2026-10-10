@@ -1,5 +1,20 @@
 # HyPrColoc plugin
 
+The family also exposes `cachexia_hyprcoloc_official`, an opt-in six-input
+research-contract route. It calls the same digest-pinned official package;
+the legacy `hyprcoloc` node and its input contract remain unchanged and are
+not certified by this addition. The strict route requires ordered SNP effects,
+trait identities, a frozen hash/method contract, trait correlation, overlap,
+and signed LD. It publishes the complete typed result, RDS, log and ledgers.
+It must not infer unknown covariance, call a missing result negative, or grant G0.
+
+The scope and independently rebuilt official comparisons are recorded in
+`ZJ-2002/autonomics` at `docs/audits/cachexia-v4.1-2026-10-07/HYPRCOLOC_NODE_PROOF.md`.
+Publication does not update any deployed `plugins.toml` pin. Upstream rapid
+sensitivity with `reg_steps > 0` remains blocked because of its known defect;
+no full-domain, `cred.sets`, `sensitivity.plot`, or production-daemon acceptance
+is implied.
+
 Manifest plugin for official R `hyprcoloc` (Foley and Staley, version 0.0.2,
 commit `0348bbd`) on the Podman-backed DAG runtime.
 
